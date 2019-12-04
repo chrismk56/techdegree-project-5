@@ -27,34 +27,17 @@ const captions = [
   'I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in.'
 ]
 
-
-// input.on('keyup', function() {  
-//   // const inputValue = $(input).val().toLowerCase();
-//   const inputValue = $(this).val().toLowerCase();
-//   imgsMainWrap.children().hide();
-
-//   const links = imgsMainWrap.find("a").filter("[data-title*='" + inputValue + "']");
-//   if (links.length > 0) {
-//     links.parent().show();
-//   }
-//   if(inputValue === ''){
-//       imgsMainWrap.children().show();
-//   }  
-// });
-
 input.on('keyup', function() {  
   let links = $('.imgsWrapper a');
-  links.each(function(index) { 
+  links.each(function() { 
     const inputValue = $(input).val().toLowerCase();
     if($(this).attr('data-title').toLowerCase().indexOf(inputValue) != -1) {
-      $(links).hide();
-      $(this).show();
+      $(this).parent().show();
     }else {
-      $(this).hide();
+      $(this).parent().hide();
     }
   });
 });
-
 
 
 for (let i = 1; i <= 12; i++) {
