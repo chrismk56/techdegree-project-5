@@ -8,7 +8,7 @@ const input = $('<input>').attr({
 });
 input.appendTo(mainDiv);
 
-const imgsMainWrap = $('<div></div>').addClass('imgsWrpaer');
+const imgsMainWrap = $('<div></div>').addClass('imgsWrapper');
 imgsMainWrap.appendTo(mainDiv);
 
 const captions = [
@@ -28,19 +28,32 @@ const captions = [
 ]
 
 
+// input.on('keyup', function() {  
+//   // const inputValue = $(input).val().toLowerCase();
+//   const inputValue = $(this).val().toLowerCase();
+//   imgsMainWrap.children().hide();
+
+//   const links = imgsMainWrap.find("a").filter("[data-title*='" + inputValue + "']");
+//   if (links.length > 0) {
+//     links.parent().show();
+//   }
+//   if(inputValue === ''){
+//       imgsMainWrap.children().show();
+//   }  
+// });
+
 input.on('keyup', function() {  
-  const inputValue = $(input).val().toLowerCase();
-  imgsMainWrap.children().hide();
-
-  const links = imgsMainWrap.find("a").filter("[data-title*='" + inputValue + "']");
-  if (links.length > 0) {
-    links.parent().show();
-  }
-  if(inputValue === ''){
-      imgsMainWrap.children().show();
-  }  
+  let links = $('.imgsWrapper a');
+  links.each(function(index) { 
+    const inputValue = $(input).val().toLowerCase();
+    if($(this).attr('data-title').toLowerCase().indexOf(inputValue) != -1) {
+      $(links).hide();
+      $(this).show();
+    }else {
+      $(this).hide();
+    }
+  });
 });
-
 
 
 
